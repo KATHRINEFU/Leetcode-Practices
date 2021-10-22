@@ -1,4 +1,4 @@
 # Leetcode-Practices
-This project stores my practice of leetcode problems \n
-Packages include basic, medium and hard \n
+This project stores my practice of leetcode problems <br>
+Packages include basic, medium and hard  <br>
 Only for personal use
