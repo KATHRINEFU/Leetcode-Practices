@@ -34,4 +34,15 @@ class Solution6 {
         }
         arr[arr.length-1]=temp;
     }
+
+    public int removeElementSample(int[] nums, int val) {
+        int m = 0;
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] != val){
+                nums[m] = nums[i];
+                m++;
+            }
+        }
+        return m;
+    }
 }
