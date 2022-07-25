@@ -18,6 +18,12 @@ import java.util.HashMap;
  * @Version 1.0
  **/
 public class TargetSum {
+    public static void main(String[] args) {
+        int[] nums = {1,1,1,1,1};
+        int target = 3;
+        Solution494 test = new Solution494();
+        test.find(nums, target);
+    }
 }
 
 class Solution494 {
@@ -70,6 +76,29 @@ class Solution494 {
         memo.put(key, result);
         return result;
     }
+
+    public int find(int[] nums, int target){
+        int sum = 0;
+        for(int i : nums){
+            sum += i;
+        }
+
+        int[][] dp = new int[nums.length+1][sum*2+1];
+        dp[0][sum] = 1;
+
+        for(int i = 1; i<= nums.length; i++){
+            for(int j = 0 ; j < sum*2+1 ; j++){
+                if(dp[i-1][j] == 0){
+                    continue;
+                }
+                dp[i][j-nums[i]] += dp[i-1][j];
+                dp[i][j+nums[i]] += dp[i-1][j];
+            }
+        }
+
+        return dp[nums.length-1][sum+target];
+    }
+
 
 
 }
