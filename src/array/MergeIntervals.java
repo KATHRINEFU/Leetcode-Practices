@@ -93,12 +93,12 @@ class Solution56 {
         int[] newInterval = intervals[0];
         result.add(newInterval);
         for (int[] interval : intervals) {
-            for(int i=0;i<result.size(); i++){
-                for(int j=0; j<2; j++){
-                    System.out.print(result.get(i)[j]);
-                }
-                System.out.println();
-            }
+//            for(int i=0;i<result.size(); i++){
+//                for(int j=0; j<2; j++){
+//                    System.out.print(result.get(i)[j]);
+//                }
+//                System.out.println();
+//            }
             if (interval[0] <= newInterval[1]) // Overlapping intervals, move the end if needed
                 newInterval[1] = Math.max(newInterval[1], interval[1]);
             else {                             // Disjoint intervals, add the new interval to the list
