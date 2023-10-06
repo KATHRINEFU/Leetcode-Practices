@@ -18,7 +18,7 @@ public class MergeIntervals {
     public static void main(String[] args) {
         int[][] intervals = {{1,3},{2,6},{8,10},{15,18}};
         Solution56 test = new Solution56();
-        int[][] res = test.mergeSample(intervals);
+        int[][] res = test.merge0625(intervals);
         for(int i=0; i<res.length; i++){
             for(int j=0; j<2; j++){
                 System.out.print(res[i][j]);
@@ -29,6 +29,42 @@ public class MergeIntervals {
 }
 
 class Solution56 {
+
+    public int[][] merge0625(int[][] intervals) {
+
+        // sort by start asc, end asc
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] arr1, int[] arr2) {
+                if(arr1[0]==arr2[0]) return arr1[1] - arr2[1];
+                else return arr1[0] - arr2[0];
+            }
+        });
+
+        List<int[]> list = new ArrayList<>();
+        int curStart = intervals[0][0];
+        int curEnd = intervals[0][1];
+        for(int[] interval: intervals){
+            int start = interval[0];
+            int end = interval[1];
+            if(start>= curStart && end <= curEnd) continue;
+            else if(start>=curStart && start<= curEnd && end> curEnd){
+                curEnd = end;
+            }
+            else if(start> curEnd){
+                list.add(new int[]{curStart, curEnd});
+                curStart = start;
+                curEnd = end;
+            }
+        }
+        list.add(new int[]{curStart, curEnd});
+        int[][] res = new int[list.size()][2];
+        for(int i=0; i<res.length; i++){
+            res[i] = list.get(i);
+        }
+
+        return res;
+    }
     public int[][] merge(int[][] intervals) {
         List<int[]> res = new ArrayList<>();
         int[][] sorted = sortByFirst(intervals);

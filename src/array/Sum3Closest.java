@@ -1,6 +1,6 @@
 package array;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * @ClassName Sum3Closest
@@ -15,11 +15,11 @@ import java.util.Arrays;
  **/
 public class Sum3Closest {
     public static void main(String[] args) {
-        int[] nums = {-3,-2,-5,3,-4};
-        int target = -1;
+        int[] nums = {-1,0,1,2,-1,-4};
+//        int target = -1;
         Solution16 test =  new Solution16();
-        int res = test.threeSumClosest(nums, target);
-        System.out.println(res);
+        test.threeSum(nums);
+//        System.out.println(res);
 //        int a = Integer.MIN_VALUE;
 //        int b = -6;
 //        System.out.println(Math.abs(-1-a));
@@ -29,6 +29,35 @@ public class Sum3Closest {
 }
 
 class Solution16 {
+        public List<List<Integer>> threeSum(int[] nums) {
+            List<List<Integer>> result = new ArrayList<>();
+            Arrays.sort(nums);
+            int target = 0;
+            Set<List<Integer>> s = new HashSet<>();
+            int n = nums.length;
+
+            int i = 0;
+            int j = i+1;
+            int k = n-1;
+
+            for(; i<n; i++){
+                while(j<k){
+                    int sum = nums[i] + nums[j] + nums[k];
+                    if(sum == target){
+                        s.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                        j++;
+                        k--;
+                    }else if(sum <target){
+                        j++;
+                    }else{
+                        k--;
+                    }
+                }
+            }
+
+            result.addAll(s);
+            return result;
+    }
     public int threeSumClosest(int[] nums, int target) {
         if(nums.length==3) return nums[0]+nums[1]+nums[2];
         int res=10000000;

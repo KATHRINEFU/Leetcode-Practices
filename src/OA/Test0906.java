@@ -22,10 +22,13 @@ import java.util.Map;
  **/
 public class Test0906 {
     public static void main(String[] args) {
-        int[] nums = new int[]{2,2,1,1,1,2,2};
-        Solution s = new Solution();
-        int res = s.test(nums);
-        System.out.println(res);
+//        int[] nums = new int[]{2,2,1,1,1,2,2};
+//        Solution s = new Solution();
+//        int res = s.test(nums);
+//        System.out.println(res);
+        String myString = "The cat in the hat";
+        myString.replace("Hat", "Bat");
+        System.out.println(myString);
     }
 
 }

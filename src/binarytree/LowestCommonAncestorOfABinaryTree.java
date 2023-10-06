@@ -25,4 +25,24 @@ class Solution236 {
         if(left!=null && right!=null) return root;
         return left!=null?left:right;
     }
+
+    public TreeNode helper(TreeNode root, TreeNode p, TreeNode q){
+        if(root == null) return null;
+        if(root.val == p.val || root.val == q.val) return root;
+
+        int min = Math.min(p.val, q.val);
+        int max = Math.max(p.val, q.val);
+        if(root.val >= max){
+            //both in left
+            return helper(root.left, p, q);
+        }
+        else if(root.val <= min){
+            //both in right
+            return helper(root.right, p, q);
+        }else{
+            // one left, one right
+            return root;
+        }
+
+    }
 }
