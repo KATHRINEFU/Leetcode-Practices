@@ -2,10 +2,10 @@ package medium;
 
 public class FindFirstAndLastPosition {
     public static void main(String[] args) {
-        int[] arr = {2,2};
-        int k = 2;
+        int[] arr = {1, 4};
+        int k = 4;
         Solution34 test = new Solution34();
-        test.searchRange(arr,k);
+        test.searchRange2(arr,k);
     }
 }
 
@@ -35,6 +35,35 @@ class Solution34 {
         }
 
         return new int[]{left+1, right-1};
+    }
+
+
+    public int[] searchRange2(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length-1;
+        int mid = left;
+        while(left<=right){
+            mid = (right-left)/2+left;
+            if(nums[mid]<target){
+                left = mid+1;
+            }else if(nums[mid]>target){
+                right = mid-1;
+            }else{
+                int i=mid, j = mid;
+                while(i>=0 && nums[i]==target){
+                    i --;
+                }
+
+                while(j<nums.length && nums[j]==target){
+                    j++;
+                }
+
+                return new int[]{i+1, j-1};
+
+            }
+        }
+
+        return new int[]{-1,-1};
     }
 
     public int[] searchRangeSample(int[] a, int target){
